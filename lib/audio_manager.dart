@@ -90,6 +90,10 @@ class AudioManager {
 
   Future<dynamic> _handler(MethodCall call) {
     switch (call.method) {
+      case "stop":
+        print('-------------------------------stopped');
+        if (_events != null) _events(AudioManagerEvents.ended, null);
+        break;
       case "ready":
         _isLoading = false;
         _duration = Duration(milliseconds: call.arguments ?? 0);

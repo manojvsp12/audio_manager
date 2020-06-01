@@ -236,7 +236,7 @@ public class MediaPlayerService extends Service {
                 Bitmap bitmap = getBitmapFromUrl(url);
                 if (bitmap != null) {
                     views.setImageViewBitmap(R.id.image, bitmap);
-                    notificationManager.notify(NOTIFICATION_PENDING_ID, builder.build());
+                    startForeground(NOTIFICATION_PENDING_ID, builder.build());
                 }
             }).start();
             return;
@@ -245,7 +245,7 @@ public class MediaPlayerService extends Service {
             AssetManager am = context.getAssets();
             InputStream inputStream = am.open(url);
             views.setImageViewBitmap(R.id.image, BitmapFactory.decodeStream(inputStream));
-            notificationManager.notify(NOTIFICATION_PENDING_ID, builder.build());
+            startForeground(NOTIFICATION_PENDING_ID, builder.build());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -268,7 +268,7 @@ public class MediaPlayerService extends Service {
         }
 
         // 刷新notification
-        notificationManager.notify(NOTIFICATION_PENDING_ID, builder.build());
+        startForeground(NOTIFICATION_PENDING_ID, builder.build());
     }
 
     // 网络获取图片
