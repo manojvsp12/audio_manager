@@ -165,7 +165,7 @@ open class AudioManager: NSObject {
         }
         if queue.currentItem?.status != .readyToPlay { return }
         
-        playerItem.seek(to: CMTime(seconds: position, preferredTimescale: timescale)) {[weak self] (flag) in
+        playerItem.seek(to: CMTime.zero) {[weak self] (flag) in
             if flag {
                 self?.onEvents?(.seekComplete(Int(position * 1000)))
             }
